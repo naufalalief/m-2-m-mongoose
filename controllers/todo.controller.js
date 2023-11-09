@@ -39,4 +39,17 @@ module.exports = {
       message: "success delete Todo",
     });
   },
+  editTodo: async (req, res) => {
+    const id = req.params.id;
+    const data = req.body;
+    if(!data._userId) {
+      return res.status(400).json({
+        message: "Missing _userId",
+      });
+    }
+    await Todo.findByIdAndUpdate(id, data);
+    res.status(200).json({
+      message: "success edit Todo",
+    });
+  },
 };
