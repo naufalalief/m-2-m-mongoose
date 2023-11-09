@@ -30,5 +30,13 @@ module.exports = {
     res.status(200).json({
       message: "success delete user",
     });
-  }
+  },
+  editUser: async (req, res) => {
+    const id = req.params.id;
+    const data = req.body;
+    await User.findByIdAndUpdate(id, data);
+    res.status(200).json({
+      message: "success edit user",
+    });
+  },
 };
